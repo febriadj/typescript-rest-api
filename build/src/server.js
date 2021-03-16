@@ -10,7 +10,7 @@ var index_1 = __importDefault(require("./routes/index"));
 var app = express_1.default();
 var port = 3000;
 // config .env file
-dotenv_1.default.config({ path: './src/.env' });
+dotenv_1.default.config({ path: './.env' });
 // set middleware
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.json());

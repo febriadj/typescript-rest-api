@@ -40,12 +40,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var db_1 = __importDefault(require("../config/db"));
 var router = express_1.default.Router();
 router.get('/', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        res.status(200).json({
-            status: 'success',
-            message: 'hello world'
+        db_1.default.query('SELECT * FROM students', function (err, rows) {
+            if (err)
+                return new Error(err);
+            res.status(200).json(rows);
         });
         return [2 /*return*/];
     });

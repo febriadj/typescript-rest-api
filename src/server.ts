@@ -8,7 +8,7 @@ const app: any = express()
 const port: number = 3000
 
 // config .env file
-dotenv.config({ path: './src/.env' })
+dotenv.config({ path: './.env' })
 
 // set middleware
 app.use(bodyParser.urlencoded({ extended: false }))
