@@ -13,3 +13,16 @@ Content-Type: application/json
   "umur": 19,
   "kelamin": "laki-laki"
 }
+
+###
+
+PUT http://localhost:3000/students/1
+Content-Type: application/json
+
+{
+  "nama": "nino nakano",
+  "fakultas": "tata boga",
+  "jurusan": "tata boga",
+  "umur": 18,
+  "kelamin": "perempuan"
+}

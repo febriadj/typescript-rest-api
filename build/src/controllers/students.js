@@ -79,5 +79,32 @@ router.post('/', function (req, res, next) { return __awaiter(void 0, void 0, vo
         }
     });
 }); });
+router.put('/:nim', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var params, _a, nama, fakultas, jurusan, umur, kelamin, sql;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                params = req.params.nim;
+                _a = req.body, nama = _a.nama, fakultas = _a.fakultas, jurusan = _a.jurusan, umur = _a.umur, kelamin = _a.kelamin;
+                return [4 /*yield*/, "UPDATE students SET\n    nama = ?, fakultas = ?, jurusan = ?, umur = ?, kelamin = ?\n    WHERE nim = " + params + "\n  "];
+            case 1:
+                sql = _b.sent();
+                db_1.default.query(sql, [nama, fakultas, jurusan, umur, kelamin], function (err, rows) {
+                    if (err)
+                        return new Error(err);
+                    if (rows.affectedRows == 0)
+                        return res.status(401).json({
+                            status: 'failed',
+                            message: 'nim does not define any students'
+                        });
+                    res.status(200).json({
+                        status: 'success',
+                        message: 'successfully changed student data'
+                    });
+                });
+                return [2 /*return*/];
+        }
+    });
+}); });
 exports.default = router;
 //# sourceMappingURL=students.js.map
