@@ -1,2 +1,15 @@
 GET http://localhost:3000/students
 Content-Type: application/json
+
+###
+
+POST http://localhost:3000/students
+Content-Type: application/json
+
+{
+  "nama": "febriadji",
+  "fakultas": "teknologi informasi",
+  "jurusan": "teknik informatika",
+  "umur": 19,
+  "kelamin": "laki-laki"
+}

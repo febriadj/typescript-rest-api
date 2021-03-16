@@ -43,13 +43,40 @@ var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("../config/db"));
 var router = express_1.default.Router();
 router.get('/', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var sql;
     return __generator(this, function (_a) {
-        db_1.default.query('SELECT * FROM students', function (err, rows) {
-            if (err)
-                return new Error(err);
-            res.status(200).json(rows);
-        });
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, 'SELECT * FROM students'];
+            case 1:
+                sql = _a.sent();
+                db_1.default.query(sql, function (err, rows) {
+                    if (err)
+                        return new Error(err);
+                    res.status(200).json(rows);
+                });
+                return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, nama, fakultas, jurusan, umur, kelamin, sql;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, nama = _a.nama, fakultas = _a.fakultas, jurusan = _a.jurusan, umur = _a.umur, kelamin = _a.kelamin;
+                return [4 /*yield*/, "INSERT INTO students VALUES (\n    0, '" + nama + "', '" + fakultas + "', '" + jurusan + "', '" + umur + "', '" + kelamin + "'\n  )"];
+            case 1:
+                sql = _b.sent();
+                db_1.default.query(sql, function (err, rows) {
+                    if (err)
+                        return new Error(err);
+                    res.status(200).json({
+                        status: 'success',
+                        message: 'successfully added student data'
+                    });
+                });
+                return [2 /*return*/];
+        }
     });
 }); });
 exports.default = router;

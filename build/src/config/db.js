@@ -12,12 +12,15 @@ var Connection = /** @class */ (function () {
         this.dbName = name;
     }
     Connection.prototype.dbCreate = function () {
-        var db = mysql_1.default.createConnection({
+        return mysql_1.default.createConnection({
             host: this.dbHost,
             user: this.dbUser,
             password: this.dbPass,
             database: this.dbName
         });
+    };
+    Connection.prototype.dbConnect = function () {
+        var db = this.dbCreate();
         db.connect(function (err) {
             if (err)
                 return new Error(err);
@@ -34,6 +37,6 @@ var mysqlConfig = {
     name: 'db_projects'
 };
 var host = mysqlConfig.host, user = mysqlConfig.user, pass = mysqlConfig.pass, name = mysqlConfig.name;
-var conn = new Connection(host, user, pass, name).dbCreate();
+var conn = new Connection(host, user, pass, name).dbConnect();
 exports.default = conn;
 //# sourceMappingURL=db.js.map

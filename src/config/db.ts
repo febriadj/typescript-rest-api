@@ -18,12 +18,16 @@ class Connection implements Configuration {
   }
 
   dbCreate() {
-    const db = mysql.createConnection({
+    return mysql.createConnection({
       host: this.dbHost,
       user: this.dbUser,
       password: this.dbPass,
       database: this.dbName
     })
+  }
+
+  dbConnect() {
+    const db = this.dbCreate()
 
     db.connect((err: any) => {
       if (err) return new Error(err)
@@ -43,6 +47,6 @@ const mysqlConfig = {
 }
 
 const { host, user, pass, name } = mysqlConfig
-const conn = new Connection(host, user, pass, name).dbCreate()
+const conn = new Connection(host, user, pass, name).dbConnect()
 
 export default conn
