@@ -106,5 +106,31 @@ router.put('/:nim', function (req, res, next) { return __awaiter(void 0, void 0,
         }
     });
 }); });
+router.delete('/:nim', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var params, sql;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                params = req.params.nim;
+                return [4 /*yield*/, "DELETE FROM students WHERE nim = ?"];
+            case 1:
+                sql = _a.sent();
+                db_1.default.query(sql, [params], function (err, rows) {
+                    if (err)
+                        return new Error(err);
+                    if (rows.affectedRows == 0)
+                        return res.status(401).json({
+                            status: 'failed',
+                            message: 'nim does not define any students'
+                        });
+                    res.status(200).json({
+                        status: 'success',
+                        message: 'successfully deleted student data'
+                    });
+                });
+                return [2 /*return*/];
+        }
+    });
+}); });
 exports.default = router;
 //# sourceMappingURL=students.js.map

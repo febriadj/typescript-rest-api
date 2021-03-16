@@ -16,13 +16,18 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/students/1
+PUT http://localhost:3000/students/4
 Content-Type: application/json
 
 {
-  "nama": "nino nakano",
-  "fakultas": "tata boga",
-  "jurusan": "tata boga",
+  "nama": "febriadji",
+  "fakultas": "teknologi informasi",
+  "jurusan": "teknik informatika",
   "umur": 18,
-  "kelamin": "perempuan"
+  "kelamin": "laki-laki"
 }
+
+### 
+
+DELETE http://localhost:3000/students/4
+Content-Type: application/json

@@ -53,4 +53,23 @@ router.put('/:nim', async (req, res, next) => {
   })
 })
 
+router.delete('/:nim', async (req, res, next) => {
+  const params: string = req.params.nim
+  const sql = await `DELETE FROM students WHERE nim = ?`
+
+  conn.query(sql, [params], (err: any, rows) => {
+    if (err) return new Error(err)
+
+    if (rows.affectedRows == 0) return res.status(401).json({
+      status: 'failed',
+      message: 'nim does not define any students'
+    })
+
+    res.status(200).json({
+      status: 'success',
+      message: 'successfully deleted student data'
+    })
+  })
+})
+
 export default router
